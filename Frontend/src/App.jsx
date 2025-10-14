@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import ParticlesBg from 'particles-bg'
-import FaceRecognition from './components/FaceRecognition/FaceRecognition.jsx';
-import Navigation from './components/Navigation/Navigation.jsx';
-import Signin from './components/Signin/Signin.jsx';
-import Register from './components/Register/Register.jsx';
-import Logo from './components/Logo/Logo.jsx';
-import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.jsx';
-import Rank from './components/Rank/Rank.jsx';
+import FaceRecognition from './Components/FaceRecognition/FaceRecognition.jsx';
+import Navigation from './Components/Navigation/Navigation.jsx';
+import Signin from './Components/Signin/Signin.jsx';
+import Register from './Components/Register/Register.jsx';
+import Logo from './Components/Logo/Logo.jsx';
+import ImageLinkForm from './Components/ImageLinkForm/ImageLinkForm.jsx';
+import Rank from './Components/Rank/Rank.jsx';
 import Profile from './Components/Profile/Profile.jsx';
-import Modal from './components/Modal/Modal.jsx';
+import Modal from './Components/Modal/Modal.jsx';
+
 import './App.css';
 
 const API_BASE = 'https://face-recognition-backed-deploy.onrender.com';
