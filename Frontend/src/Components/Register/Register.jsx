@@ -6,77 +6,121 @@ const API_BASE = 'https://face-recognition-backed-deploy.onrender.com';
 class Register extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { email: '', password: '', name: '' };
+        this.state = {
+            email: '',
+            password: '',
+            name: ''
+        };
     }
 
-    onNameChange = e => this.setState({ name: e.target.value });
-    onEmailChange = e => this.setState({ email: e.target.value });
-    onPasswordChange = e => this.setState({ password: e.target.value });
-
-    handleKeyPress = e => {
-        if (e.key === 'Enter') this.onSubmitSignIn();
-    };
+    onNameChange = (event) => this.setState({ name: event.target.value });
+    onEmailChange = (event) => this.setState({ email: event.target.value });
+    onPasswordChange = (event) => this.setState({ password: event.target.value });
 
     onSubmitSignIn = () => {
         const { email, password, name } = this.state;
         const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
 
-        if (!emailRegex.test(email)) return alert('Invalid email');
-        if (!email || !password || !name) return alert('Please fill all fields');
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address that includes "@" and ends with ".com"');
+            return;
+        }
+
+        if (!email || !password || !name) {
+            alert('Please fill out all fields before registering.');
+            return;
+        }
 
         fetch(`${API_BASE}/register`, {
-            method: 'POST',
+            method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, name })
         })
-            .then(res => res.json())
+            .then(response => response.json())
             .then(user => {
                 if (user.id) {
                     this.props.loadUser(user);
                     this.props.onRouteChange('home');
-                } else alert('Registration failed');
+                } else {
+                    alert('Registration failed. Please check your input.');
+                }
             })
-            .catch(() => alert('Something went wrong'));
+            .catch(err => {
+                console.error('Registration error:', err);
+                alert('Something went wrong while registering. Please try again.');
+            });
+    };
+
+    // Detect Enter key anywhere inside the form
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // avoid default form submit/reload
+            this.onSubmitSignIn();
+        }
     };
 
     render() {
         return (
-            <article className="auth-container">
-                <main className="auth-main" onKeyDown={this.handleKeyPress}>
-                    <h1>Register</h1>
+            <article
+                className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center"
+                onKeyDown={this.handleKeyDown}
+            >
+                <main className="pa4 black-80">
+                    <div className="measure">
+                        <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+                            <legend className="f1 fw6 ph0 mh0">Register</legend>
 
-                    <label>Name</label>
-                    <input
-                        className="auth-input"
-                        type="text"
-                        onChange={this.onNameChange}
-                    />
+                            <div className="mt3">
+                                <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
+                                <input
+                                    className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    onChange={this.onNameChange}
+                                />
+                            </div>
 
-                    <label>Email</label>
-                    <input
-                        className="auth-input"
-                        type="email"
-                        onChange={this.onEmailChange}
-                    />
+                            <div className="mt3">
+                                <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                                <input
+                                    className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                    type="email"
+                                    name="email-address"
+                                    id="email-address"
+                                    onChange={this.onEmailChange}
+                                />
+                            </div>
 
-                    <label>Password</label>
-                    <input
-                        className="auth-input"
-                        type="password"
-                        onChange={this.onPasswordChange}
-                    />
+                            <div className="mv3">
+                                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                                <input
+                                    className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    onChange={this.onPasswordChange}
+                                />
+                            </div>
+                        </fieldset>
 
-                    <button className="auth-btn" onClick={this.onSubmitSignIn}>
-                        Register
-                    </button>
+                        <div>
+                            <input
+                                onClick={this.onSubmitSignIn}
+                                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+                                type="submit"
+                                value="Register"
+                            />
+                        </div>
 
-                    <div className="auth-switch">
-                        <p>
-                            Already have an account?{' '}
-                            <span onClick={() => this.props.onRouteChange('signin')}>
-                                Sign in
-                            </span>
-                        </p>
+                        <div className="lh-copy mt3">
+                            <p
+                                onClick={() => this.props.onRouteChange('signin')}
+                                className="f6 link dim black db pointer"
+                            >
+                                Already have an account? Sign in
+                            </p>
+                        </div>
                     </div>
                 </main>
             </article>
