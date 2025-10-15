@@ -26,9 +26,8 @@ class Signin extends React.Component {
         setTimeout(() => this.setState({ showError: false }), 3000);
     };
 
-    // ✅ use preventDefault() so form doesn't reload the page
     onSubmitSignIn = (event) => {
-        event.preventDefault();
+        event.preventDefault(); // prevent reload
 
         const { signInEmail, signInPassword } = this.state;
 
@@ -68,45 +67,48 @@ class Signin extends React.Component {
         return (
             <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                 <main className="pa4 black-80">
-                    <div className="measure">
+                    <div className="measure" style={{ position: 'relative' }}>
+                        {/* Floating popup */}
                         <div className={`popup ${showError ? 'show' : ''}`}>
                             {errorMessage}
                         </div>
 
-                        {/*form wrapper */}
                         <form onSubmit={this.onSubmitSignIn}>
                             <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                                 <legend className="f1 fw6 ph0 mh0">Sign In</legend>
 
                                 <div className="mt3">
-                                    <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                                    <label className="db fw6 lh-copy f6" htmlFor="email-address">
+                                        Email
+                                    </label>
                                     <input
-                                        className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
                                         type="email"
                                         name="email-address"
                                         id="email-address"
                                         onChange={this.onEmailChange}
+                                        className="input-box w-100"
                                     />
                                 </div>
 
                                 <div className="mv3">
-                                    <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                                    <label className="db fw6 lh-copy f6" htmlFor="password">
+                                        Password
+                                    </label>
                                     <input
-                                        className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 hover-black"
                                         type="password"
                                         name="password"
                                         id="password"
                                         onChange={this.onPasswordChange}
+                                        className="input-box w-100"
                                     />
                                 </div>
                             </fieldset>
 
                             <div>
-                                {/*type="submit" triggers Enter */}
                                 <input
-                                    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                     type="submit"
                                     value="Sign in"
+                                    className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                                 />
                             </div>
                         </form>
