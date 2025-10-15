@@ -1,18 +1,19 @@
 .hover-black:hover {
     background-color: #000 !important;
 }
+
+/* Input fields (white like Signin) */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    background-color: #ffffff !important; /* solid white overrides bg-transparent */
-    color: #000 !important;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
-    padding: 10px;
+    height: 38px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
     font-size: 16px;
-    width: 100%;
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
     transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"]:focus,
@@ -20,18 +21,13 @@ input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
     border-color: #000;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
-    background-color: #fff !important;
+    background-color: rgba(255, 255, 255, 1);
 }
 
-/* Button */
-input[type="submit"] {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s ease;
+/* Card styling */
+article {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
