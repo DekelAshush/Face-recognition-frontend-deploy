@@ -1,3 +1,31 @@
 .hover-black:hover {
     background-color: #000 !important;
 }
+
+/* Background of the entire page */
+body {
+    background: linear-gradient(135deg, #c471ed, #12c2e9, #f64f59);
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+}
+
+/* The white box (the form container) */
+article {
+    background-color: white; /* ✅ makes inside white */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: make text darker for contrast */
+article legend,
+article label,
+article p {
+    color: #111;
+}
+
+/* Register button hover */
+input[type="submit"]:hover {
+    background-color: #111;
+    color: white;
+}
