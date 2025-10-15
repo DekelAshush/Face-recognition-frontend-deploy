@@ -13,9 +13,13 @@
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.4s ease, transform 0.4s ease;
+    min-height: 40px;        /* ✅ keeps the box height consistent */
+    display: flex;
+    align-items: center;     /* vertically center text */
+    justify-content: center;
 }
-
 .popup.show {
     opacity: 1;
     transform: translateY(0);
 }
+
