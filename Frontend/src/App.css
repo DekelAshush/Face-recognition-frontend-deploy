@@ -7,35 +7,57 @@
     justify-content: center;
 }
 
+/* Top section should be in normal flow so the picture naturally appears below it */
 .top-section {
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: static; /* previously absolute */
+    margin: 24px auto 8px auto; /* space above/below, center horizontally */
+    left: auto;
+    transform: none;
     text-align: center;
     width: fit-content;
-    z-index: 10;          /* ✅ bring above background */
+    z-index: 10;          /* keep above background */
 }
 
+/* remove pointer-events override; leave form interactive by default */
 .top-section form {
-    pointer-events: auto; /* ✅ make the input clickable */
+    /* empty: use default pointer behavior */
 }
+
 .face-container {
-    margin-top: 300px;        /* ✅ pushes image lower */
+    /* small gap so image appears slightly lower than the URL input */
+    margin-top: 18px;        /* previously large fixed pixel values; now small gap */
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-/* Make it responsive */
-@media screen and (max-width: 768px) {
+/* Make it responsive: slightly larger gaps on larger screens */
+@media screen and (min-width: 1024px) {
+    .top-section {
+        margin-top: 36px;
+        margin-bottom: 12px;
+    }
     .face-container {
-        margin-top: 220px;      /* slightly smaller gap for tablets */
+        margin-top: 24px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .top-section {
+        margin-top: 18px;
+        margin-bottom: 8px;
+    }
+    .face-container {
+        margin-top: 14px;
     }
 }
 
 @media screen and (max-width: 480px) {
+    .top-section {
+        margin-top: 14px;
+        margin-bottom: 6px;
+    }
     .face-container {
-        margin-top: 180px;      /* smaller gap for phones */
+        margin-top: 12px;
     }
 }
