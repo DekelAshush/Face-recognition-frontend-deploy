@@ -12,9 +12,11 @@
     top: 40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
     text-align: center;
-    pointer-events: none; /* Let clicks pass through */
-    z-index: 0;
+    width: fit-content;
+    z-index: 10;          /* ✅ bring above background */
 }
 
+.top-section form {
+    pointer-events: auto; /* ✅ make the input clickable */
+}
