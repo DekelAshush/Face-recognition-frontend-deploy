@@ -15,8 +15,6 @@
     width: 100%;
     text-align: center;
     pointer-events: none; /* Let clicks pass through */
+    z-index: 1;
 }
 
-.top-section * {
-    pointer-events: auto; /* ✅ Allow clicks only on children */
-}
