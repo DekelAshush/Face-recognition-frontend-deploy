@@ -9,7 +9,8 @@ class Signin extends React.Component {
         this.state = {
             signInEmail: '',
             signInPassword: '',
-            errorMessage: '', // ✅ new state for popup message
+            errorMessage: '',
+            showError: false, // for animation
         };
     }
 
@@ -20,19 +21,21 @@ class Signin extends React.Component {
         window.sessionStorage.setItem('token', token);
     };
 
+    showPopup = (message) => {
+        this.setState({ errorMessage: message, showError: true });
+
+        // Hide automatically after 3 seconds
+        setTimeout(() => this.setState({ showError: false }), 3000);
+    };
+
     onSubmitSignIn = () => {
         const { signInEmail, signInPassword } = this.state;
 
-        // ✅ Validate empty fields
         if (!signInEmail || !signInPassword) {
-            this.setState({ errorMessage: '⚠️ Please enter both email and password.' });
+            this.showPopup('⚠ Please enter both email and password.');
             return;
         }
 
-        // ✅ Clear previous error
-        this.setState({ errorMessage: '' });
-
-        // Send login request
         fetch(`${API_BASE}/signin`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -48,31 +51,28 @@ class Signin extends React.Component {
                     this.props.loadUser(data.user);
                     this.props.onRouteChange('home');
                 } else {
-                    // ✅ Show popup when wrong email or password
-                    this.setState({ errorMessage: '❌ Wrong email or password. Please try again.' });
+                    this.showPopup('❌ Wrong email or password. Please try again.');
                 }
             })
             .catch((err) => {
                 console.error('Signin error:', err);
-                this.setState({ errorMessage: '⚠️ Server error. Please try again later.' });
+                this.showPopup('⚠️ Server error. Please try again later.');
             });
     };
 
     render() {
         const { onRouteChange } = this.props;
-        const { errorMessage } = this.state;
+        const { showError, errorMessage } = this.state;
 
         return (
             <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                 <main className="pa4 black-80">
                     <div className="measure">
 
-                        {/* ✅ Popup message box */}
-                        {errorMessage && (
-                            <div className="bg-washed-red pa2 mb3 br2 tc b">
-                                {errorMessage}
-                            </div>
-                        )}
+                        {/* ✅ Animated popup */}
+                        <div className={`popup ${showError ? 'show' : ''}`}>
+                            {errorMessage}
+                        </div>
 
                         <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                             <legend className="f1 fw6 ph0 mh0">Sign In</legend>
