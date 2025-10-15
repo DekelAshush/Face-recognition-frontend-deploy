@@ -1,3 +1,13 @@
-.Tilt{
-    background: linear-gradient(89deg , #FF5EDF 0%, #04C8DE 100%);
+.Tilt {
+    background: linear-gradient(135deg, #ff5edf 0%, #04c8de 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    overflow: hidden; /* keeps rounded edges clean */
+}
+
+.Tilt-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
