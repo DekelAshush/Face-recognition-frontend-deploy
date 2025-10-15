@@ -21,7 +21,7 @@
     pointer-events: auto; /* ✅ make the input clickable */
 }
 .face-container {
-    margin-top: 400px;        /* ✅ pushes image lower */
+    margin-top: 300px;        /* ✅ pushes image lower */
     display: flex;
     justify-content: center;
     align-items: flex-start;
