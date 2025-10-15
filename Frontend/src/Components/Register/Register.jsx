@@ -14,34 +14,53 @@ class Register extends React.Component {
     }
 
     onNameChange = (event) => {
-        this.setState({name: event.target.value})
+        this.setState({ name: event.target.value });
     }
 
     onEmailChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({ email: event.target.value });
     }
 
     onPasswordChange = (event) => {
-        this.setState({password: event.target.value})
+        this.setState({ password: event.target.value });
     }
 
+    // ✅ Validate email before sending
     onSubmitSignIn = () => {
+        const { email, password, name } = this.state;
+
+        // Simple regex for emails that contain '@' and end with '.com'
+        const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address that includes "@" and ends with ".com"');
+            return; // stop submission
+        }
+
+        // (Optional) check all fields filled
+        if (!email || !password || !name) {
+            alert('Please fill out all fields before registering.');
+            return;
+        }
+
+        // ✅ Only continue if validation passes
         fetch(`${API_BASE}/register`, {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-                name: this.state.name
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, name })
         })
             .then(response => response.json())
             .then(user => {
                 if (user.id) {
-                    this.props.loadUser(user)
+                    this.props.loadUser(user);
                     this.props.onRouteChange('home');
+                } else {
+                    alert('Registration failed. Please check your input.');
                 }
             })
+            .catch(err => {
+                console.error('Registration error:', err);
+                alert('Something went wrong while registering. Please try again.');
+            });
     }
 
     render() {
