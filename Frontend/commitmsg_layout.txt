@@ -1,2 +1,0 @@
-Refactor layout: put top-section in normal flow and adjust face spacing
-
