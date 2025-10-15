@@ -6,3 +6,26 @@
     display: flex;
     justify-content: center;
 }
+
+.top-section {
+    position: absolute;
+    top: 40px;                /* distance from top of page */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+.top-section .f3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+.top-section .f1 {
+    margin: 5px 0;
+    font-size: 3rem;
+}
+
+/* Keep the input bar close under text */
+.top-section form {
+    margin-top: 15px;
+}

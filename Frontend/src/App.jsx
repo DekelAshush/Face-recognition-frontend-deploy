@@ -183,16 +183,20 @@ class App extends Component {
                     </Modal>
                 }
                 { route === 'home'
-                    ? <div>
+                    ?<div>
                         <Logo />
-                        <Rank
-                            name={this.state.user.name}
-                            entries={this.state.user.entries}
-                        />
-                        <ImageLinkForm
-                            onInputChange={this.onInputChange}
-                            onPictureSubmit={this.onPictureSubmit}
-                        />
+
+                        <div className="top-section">
+                            <Rank
+                                name={this.state.user.name}
+                                entries={this.state.user.entries}
+                            />
+                            <ImageLinkForm
+                                onInputChange={this.onInputChange}
+                                onPictureSubmit={this.onPictureSubmit}
+                            />
+                        </div>
+
                         <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
                     </div>
                     : (
