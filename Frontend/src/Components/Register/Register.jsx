@@ -1,5 +1,5 @@
 import React from 'react';
-import './AuthForm.css';
+import './Register.css';
 
 const API_BASE = 'https://face-recognition-backed-deploy.onrender.com';
 
