@@ -197,7 +197,9 @@ class App extends Component {
                             />
                         </div>
 
-                        <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
+                        <div className="face-container">
+                            <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
+                        </div>
                     </div>
                     : (
                         route === 'signin'

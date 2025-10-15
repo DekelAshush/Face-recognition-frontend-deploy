@@ -20,3 +20,22 @@
 .top-section form {
     pointer-events: auto; /* ✅ make the input clickable */
 }
+.face-container {
+    margin-top: 300px;        /* ✅ pushes image lower */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Make it responsive */
+@media screen and (max-width: 768px) {
+    .face-container {
+        margin-top: 220px;      /* slightly smaller gap for tablets */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .face-container {
+        margin-top: 180px;      /* smaller gap for phones */
+    }
+}
