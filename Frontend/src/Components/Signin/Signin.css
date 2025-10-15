@@ -24,6 +24,7 @@
     opacity: 1;
     transform: translate(-50%, -10px);
 }
+
 /* Input fields (email + password) */
 input[type="email"],
 input[type="password"] {
