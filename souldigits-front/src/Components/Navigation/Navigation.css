@@ -1,0 +1,58 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Left links + right button */
+    padding: 10px 20px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Left links */
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Links */
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+/* Active link */
+.navbar a.active {
+    color: #007BFF;
+    font-weight: 700;
+    border-bottom: 2px solid #007BFF;
+}
+
+/* Hover */
+.navbar a:hover {
+    color: #0056b3;
+}
+
+/* Lang toggle */
+.lang-toggle {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #f0f0f0;
+    transition: transform 0.4s ease, background 0.3s ease;
+}
+
+/* Animation states */
+.slide-left {
+    transform: translateX(0);
+}
+
+.slide-right {
+    transform: translateX(0); /* keep it stationary */
+}
+
+/* Hover */
+.lang-toggle:hover {
+    background: #e0e0e0;
+}
